@@ -1,11 +1,9 @@
 const admin = require("firebase-admin");
 const path = require("path");
 
-
-const serviceAccount = require(path.join(
-  __dirname,
-  "../../geotechdatabase-a6a85-firebase-adminsdk-fbsvc-f5338ee348.json"
-));
+const serviceAccount = require(
+ "../../firebase_key.json"
+);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -13,7 +11,8 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-console.log("🔥 Firebase Connected Successfully");
+console.log("Firebase Connected Successfully");
 
 module.exports = db;
+
 
