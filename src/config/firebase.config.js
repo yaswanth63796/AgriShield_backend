@@ -1,4 +1,4 @@
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 
 if (!process.env.FIREBASE_KEY) {
   throw new Error(
@@ -9,8 +9,7 @@ if (!process.env.FIREBASE_KEY) {
 const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
 module.exports = admin;
-
