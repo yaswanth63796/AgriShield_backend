@@ -5,7 +5,7 @@ require("./config/firebase.config");
 const cropsRoutes = require("./routes/crops");
 const registerRoutes = require("./routes/register");
 const farmerRoutes = require('./routes/farmerRegisterRoutes');
-const authRoutes = require('./routes/authRoutes');
+
 
 
 
