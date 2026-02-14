@@ -25,14 +25,14 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const userData = {
-      username,
+      
       email,
       password: hashedPassword,
       role: "farmer",
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-
+  
     const userId = await createUser(userData);
 
     // Generate JWT
@@ -47,7 +47,6 @@ const register = async (req, res) => {
       token,
       user: {
         id: userId,
-        username,
         email,
       },
     });

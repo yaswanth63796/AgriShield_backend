@@ -15,8 +15,7 @@ const createCrop = async (data) => {
   const cropData = {
     imageUrl: data.imageUrl,               // String
     description: data.description,         // String
-    latitude: Number(data.latitude),       // Number
-    longitude: Number(data.longitude),     // Number
+      
     status: data.status || "pending",      // Default value
     createdAt: new Date(),                 // Date
   };
