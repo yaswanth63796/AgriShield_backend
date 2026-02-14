@@ -16,7 +16,7 @@ applyMiddleware(app);
 app.use("/api/crops", cropsRoutes);
 
 app.use('/api/farmers', farmerRoutes);
-app.use('/api/auth', authRoutes);
+
 
 app.get('/', (req, res) => res.send('Firebase Google Sign-In Backend API Running'));
 
