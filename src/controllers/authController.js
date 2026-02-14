@@ -1,4 +1,5 @@
-const { admin, db } = require('../config/firebase');
+const db = require('../config/firebase.config');
+const { admin } = require('../config/firebase.config');
 
 // Google Sign-In backend method (register/login)
 exports.googleSignIn = async (req, res) => {
