@@ -6,6 +6,7 @@ const cropsRoutes = require("./routes/crops");
 const registerRoutes = require("./routes/register");
 const farmerRoutes = require('./routes/farmerRegisterRoutes');
 
+const loginRoutes = require("./routes/login.routes");
 
 
 
@@ -16,7 +17,8 @@ applyMiddleware(app);
 app.use("/api/crops", cropsRoutes);
 
 app.use('/api/farmers', farmerRoutes);
-
+app.use("/api/auth", registerRoutes);
+app.use("/api/auth", loginRoutes);
 
 app.get('/', (req, res) => res.send('Firebase Google Sign-In Backend API Running'));
 
