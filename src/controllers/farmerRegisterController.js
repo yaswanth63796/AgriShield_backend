@@ -1,6 +1,5 @@
 // controllers/farmerCrop.controller.js
 const { db } = require('../config/firebase.config');
-const { collection, addDoc, getDocs, doc, getDoc } = require('firebase/firestore');
 
 const collectionName = 'farmerCrops';
 
@@ -29,8 +28,8 @@ exports.addFarmerCrop = async (req, res) => {
 
     const newCrop = FarmerCropModel({ cropName, acreage, landUnit, sowingDate, season, latitude, longitude });
 
-    // Save to Firestore
-    const docRef = await addDoc(collection(db, collectionName), newCrop);
+    // Save to Firestore using Admin SDK
+    const docRef = await db.collection(collectionName).add(newCrop);
 
     res.status(201).json({ id: docRef.id, ...newCrop });
   } catch (error) {
@@ -41,7 +40,7 @@ exports.addFarmerCrop = async (req, res) => {
 // Get all farmer crops
 exports.getFarmerCrops = async (req, res) => {
   try {
-    const snapshot = await getDocs(collection(db, collectionName));
+    const snapshot = await db.collection(collectionName).get();
     const crops = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.status(200).json(crops);
   } catch (error) {
@@ -52,10 +51,9 @@ exports.getFarmerCrops = async (req, res) => {
 // Get a single crop by ID
 exports.getFarmerCropById = async (req, res) => {
   try {
-    const docRef = doc(db, collectionName, req.params.id);
-    const docSnap = await getDoc(docRef);
+    const docSnap = await db.collection(collectionName).doc(req.params.id).get();
 
-    if (!docSnap.exists()) return res.status(404).json({ message: "Crop not found" });
+    if (!docSnap.exists) return res.status(404).json({ message: "Crop not found" });
 
     res.status(200).json({ id: docSnap.id, ...docSnap.data() });
   } catch (error) {
