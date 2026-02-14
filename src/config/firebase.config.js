@@ -1,4 +1,4 @@
-const admin = require("firebase-admin");
+import admin from "firebase-admin";
 
 if (!process.env.FIREBASE_KEY) {
   throw new Error("FIREBASE_KEY environment variable not set!");
@@ -10,7 +10,4 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const db = admin.firestore();
-
-module.exports = db;
-module.exports.admin = admin;
+export default admin;
